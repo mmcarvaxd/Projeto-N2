@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BombaPatch.Models
 {
-    public class EstadioViewModel : PadraoViewModel
+    public class EstadiosViewModel : PadraoViewModel
     {
         public string Nome { get; set; }
         public IFormFile Imagem { get; set; }

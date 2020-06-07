@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BombaPatch.Models
 {
-    public class NacionalidadeViewModel : PadraoViewModel
+    public class NacionalidadesViewModel : PadraoViewModel
     {
         public string Pais { get; set; }
     }

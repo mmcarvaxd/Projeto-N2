@@ -1,0 +1,156 @@
+:root {
+    --primary: #fe5767;
+}
+
+@font-face {
+    font-family: dinpro;
+    src: url(../font/DINPro.otf);
+}
+
+a, p, h1, h2, h3, h4, h5, h6 {
+    color: var(--primary);
+    font-family: 'dinpro', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+}
+
+#page-home .content {
+    width: 90%;
+    max-width: 1100px;
+    
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;    
+}
+
+#page-home .content header {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#page-home .content header .menu {
+    width: 100%;
+    margin-top: 20px;
+    max-width: 500px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+#page-home .content header .menu p {
+    margin-right: 15px;
+}
+
+#page-home .content header .menu p:hover {
+    cursor: pointer;
+}
+
+#page-home {
+    background-image: url('../images/background.png');
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#page-home .content main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#page-home .content main .option-title {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+#page-home .content main .options {
+    width: 100%;
+    margin: 0px;
+    max-width: 500px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+}
+
+#page-home .content main .options p {
+    margin-left: 15px
+}
+
+#page-home .content main .cards {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#page-home .content main .cards .card {
+    background-color: rgba(255, 255, 255, 0.95);
+    height: 300px; 
+    width: 250px; 
+    margin-right: 10px;
+    transition: 400ms;
+}
+
+#page-home .content main .cards .card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#page-home .content main .titles {
+    display: flex;
+}
+
+#page-home .content main .titles .title {
+    background-color: rgba(255, 255, 255, 0.95);
+    height: 200px; 
+    width: 510px; 
+    margin-right: 10px;
+    display: flex;
+    transition: 400ms;
+}
+
+#page-home .content main .titles .title:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#page-home .content main .font-title {
+    font-size: 30px;
+    margin: 15px 0 0 15px;
+}
+
+#page-home .content main .img-card {
+    width: 250px;
+    height: 249px;
+}
+
+#page-home .content main .img-div {
+    flex: 1;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#page-home .content main .img-title {
+    width: 250px;
+    height: 200px;
+}
+
+#page-home .content main #sobre {
+    width: 410px;
+    height: 200px;
+}

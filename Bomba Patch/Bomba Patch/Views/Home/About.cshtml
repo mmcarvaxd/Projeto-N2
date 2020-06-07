@@ -1,15 +1,89 @@
 ﻿
 @{
-    Layout = null;
+    ViewData["Title"] = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>About</title>
-</head>
-<body>
-</body>
-</html>
+<main>
+    <div style="width:100%;">
+        <div class="option-title">
+            <div class="options">
+                <ul class="nav nav-tabs">
+                    <li><a href="/Home/Index">Voltar</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home">Sobre</a></li>
+                    <li><a data-toggle="tab" href="#claudio ">Claudio</a></li>
+                    <li><a data-toggle="tab" href="#leonardo">Leonardo</a></li>
+                    <li><a data-toggle="tab" href="#matheus">Matheus</a></li>
+                    <li><a data-toggle="tab" href="#vitor">Vitor</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <div class="card-about">
+                    <div>
+                        <p class="font-title" style="padding-top: 15px">Bomba Patch</p>
+                    </div>
+                    <div>
+                        <p class="font-subtitle">Site feito para o trabalho de N2 do segundo bimestre das disciplinas de Linguagem de Programação I e Banco de dados.</p>
+                    </div>
+                    <div class="img-div">
+                        <img draggable="false" src="~/images/sobre.png" alt="" id="sobre-img">
+                    </div>
+                </div>
+            </div>
+            <div id="claudio" class="tab-pane fade">
+                <div class="card-about">
+                    <div>
+                        <p class="font-title" style="padding-top: 15px">Cláudio Rodriguez Monteiro</p>
+                    </div>
+                    <div>
+                        <p class="font-subtitle">RA: 081180042</p>
+                    </div>
+                    <div class="img-div">
+                        <img draggable="false" src="~/images/Claudio.png" alt="" id="sobre-img-people">
+                    </div>
+                </div>
+            </div>
+            <div id="leonardo" class="tab-pane fade">
+                <div class="card-about">
+                    <div>
+                        <p class="font-title" style="padding-top: 15px">Leonardo Lima Custodio</p>
+                    </div>
+                    <div>
+                        <p class="font-subtitle">RA: 081180020</p>
+                    </div>
+                    <div class="img-div">
+                        <img draggable="false" src="~/images/Leonardo.png" alt="" id="sobre-img-people">
+                    </div>
+                </div>
+            </div>
+            <div id="matheus" class="tab-pane fade">
+                <div class="card-about">
+                    <div>
+                        <p class="font-title" style="padding-top: 15px">Matheus Martins de Carvalho</p>
+                    </div>
+                    <div>
+                        <p class="font-subtitle">RA: 081180025</p>
+                    </div>
+                    <div class="img-div">
+                        <img draggable="false" src="~/images/Matheus.png" alt="" id="sobre-img-people">
+                    </div>
+                </div>
+            </div>
+            <div id="vitor" class="tab-pane fade">
+                <div class="card-about">
+                    <div>
+                        <p class="font-title" style="padding-top: 15px">Vitor Martinez de Oliveira</p>
+                    </div>
+                    <div>
+                        <p class="font-subtitle">RA: 081180044</p>
+                    </div>
+                    <div class="img-div">
+                        <img draggable="false" src="~/images/Vitor.png" alt="" id="sobre-img-people">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

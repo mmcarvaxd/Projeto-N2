@@ -150,8 +150,8 @@ body {
         }
 
         #page-home .content main .img-card {
-            width: 250px;
-            height: 249px;
+            width: 242px;
+            height: 242px;
         }
 
             #page-home .content main .img-card#neto::after {
@@ -194,7 +194,7 @@ audio {
 
 .card-about {
     width: 100%;
-    height: 450px;
+    height: 510px;
     background-color: rgba(255, 255, 255, 0.95);
     display: flex;
     flex-direction: column;
@@ -213,8 +213,69 @@ audio {
 
 #sobre-img-people {
     width: 235px;
-    height:328.41px;
+    height: 328.41px;
+    margin-top: auto;
 }
+
 .full-width {
     width: 100%;
+}
+
+.btn-voltar {
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: var(--primary);
+    padding-left: 10px;
+    height: 100%;
+}
+
+    .btn-voltar:hover {
+        background-color: rgba(0,0,0,1);
+        color: aqua;
+    }
+
+    .btn-voltar p {
+        margin-left: 10px;
+    }
+    .btn-voltar i {
+        margin-left: 10px;
+    }
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.cards-home .card-home {
+    display: flex;
+    flex-direction: column;
+    width: 510px;
+    height: 510px;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.cards-home {
+    display: flex;
+
+}
+
+.mg-right-10px {
+    margin-right:10px;
+}
+
+.img-home-div img {
+    width: 350px;
+    height: 350px;
+    margin-top: auto;
+}
+
+.img-home-div {
+    flex: 1;
+    flex-direction: row-reverse;
+    display: flex;
 }

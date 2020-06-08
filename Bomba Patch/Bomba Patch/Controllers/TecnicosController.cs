@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BombaPatch.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bomba_Patch.Controllers
+namespace BombaPatch.Controllers
 {
-    public class TecnicosController : Controller
+    public class TecnicosController : DefaultController
     {
         public IActionResult Home()
         {

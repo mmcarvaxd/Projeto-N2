@@ -7,15 +7,17 @@
     <div class="full-width">
         <div class="option-title">
             <div class="options">
-                <div class="btn-voltar noselect">
-                    <i class="fas fa-arrow-left noselect"></i>
-                    <p class="noselect">Voltar</p>
+                <div class="pointer" onclick="voltar()">
+                    <div class="btn-voltar" onclick="voltar()">
+                        <i class="fas fa-arrow-left noselect"></i>
+                        <p class="noselect">Voltar</p>
+                    </div>
                 </div>
                 <div class="noselect">
                     <p class="noselect">Técnicos</p>
                 </div>
             </div>
-        </div>
+            </div>
         <div class="cards-form">
             <div class="card-form mg-right-10px">
                 <table class="table table-responsive margintop10">
@@ -40,3 +42,8 @@
         </div>
     </div>
 </main>
+<script>
+    function voltar() {
+        location.href = '/tecnicos/home'
+    }
+</script>

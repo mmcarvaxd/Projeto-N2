@@ -15,6 +15,10 @@ p {
     margin: 0;
 }
 
+tr {
+    color: var(--primary);
+}
+
 a p {
     text-decoration: none;
 }
@@ -306,3 +310,16 @@ audio {
         border-color: var(--primary);
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px var(--primary);
     }
+
+.card-home {
+    transition: 400ms;
+}
+
+.card-home:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}

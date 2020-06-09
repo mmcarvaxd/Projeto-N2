@@ -1,6 +1,7 @@
-﻿@model TecnicosViewModel
+﻿@model JogadoresViewModel
 @{
     ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <main>
@@ -18,10 +19,11 @@
                 </div>
             </div>
         </div>
-        <div class="cards-form">
-            <div class="card-form mg-right-10px">
-                <p class="font-title">Insira as Informações</p>
-                <form action="Salvar" method="post">
+        <form action="Salvar" method="post">
+            <div class="cards-form" style="display: flex">
+                <div class="card-form mg-right-10px">
+                    <p class="font-title">Insira as Informações</p>
+                    <br />
                     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
                     <label for="Id" class="control-label">Id</label>
                     <input type="number" name="Id" value="@Model.Id" class="form-control disabled" readonly />
@@ -34,6 +36,24 @@
                     <input type="number" name="Idade" value="@Model.Idade" class="form-control" />
                     <span asp-validation-for="Idade" class="text-danger"></span>
                     <br />
+                    <label for="Overall" class="control-label">Nivel de Habilidade</label>
+                    <input type="number" name="Overall" value="@Model.Overall" class="form-control" />
+                    <span asp-validation-for="Overall" class="text-danger"></span>
+                    <br />
+                    <label for="Altura" class="control-label">Altura</label>
+                    <input type="number" name="Altura" value="@Model.Altura" class="form-control" />
+                    <span asp-validation-for="Altura" class="text-danger"></span>
+                </div>
+                <div class="card-form mg-right-10px">
+                    <br />
+                    <label for="PosicaoPreferidaId" class="control-label">Posição</label>
+                    <select asp-for="PosicaoPreferidaId" asp-items="ViewBag.PosicoesPreferidas" class="form-control"> </select>
+                    <span asp-validation-for="PosicaoPreferidaId" class="text-danger"></span>
+                    <br />
+                    <label for="PePreferidoId" class="control-label">Pé Preferido</label>
+                    <select asp-for="PePreferidoId" asp-items="ViewBag.PePreferido" class="form-control"> </select>
+                    <span asp-validation-for="PePreferidoId" class="text-danger"></span>
+                    <br />
                     <label for="NacionalidadeId" class="control-label">Nacionalidade</label>
                     <select asp-for="NacionalidadeId" asp-items="ViewBag.Nacionalidades" class="form-control"> </select>
                     <span asp-validation-for="NacionalidadeId" class="text-danger"></span>
@@ -42,14 +62,14 @@
                         <div class="btn btn-primary">Salvar</div>
                     </label>
                     <input type="submit" name="salvarbutton" id="salvarbutton" style="display: none" />
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </main>
 
 <script>
     function voltar() {
-        location.href = "/tecnicos/home"
+        location.href = '/jogadores/home'
     }
 </script>

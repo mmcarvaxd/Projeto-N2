@@ -20,7 +20,7 @@
                     <img draggable="false" src="~/images/neto.png" alt="" class="img-card">
                 </div>
             </div>
-            <div class="card">
+            <div class="card" onclick="jogadoresHome()">
                 <div>
                     <p class="font-title">Jogadores</p>
                 </div>
@@ -78,5 +78,9 @@
 
     function tecnicosHome() {
         location.href = '/tecnicos/home'
+    }
+
+    function jogadoresHome() {
+        location.href = '/jogadores/home'
     }
 </script>

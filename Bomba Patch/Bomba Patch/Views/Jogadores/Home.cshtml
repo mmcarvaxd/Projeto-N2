@@ -4,5 +4,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Home</h2>
+<main>
+    <div class="full-width">
+        <div class="option-title">
+            <div class="options">
+                <div class="pointer" onclick="voltar()">
+                    <div class="btn-voltar noselect">
+                        <i class="fas fa-arrow-left noselect"></i>
+                        <p class="noselect">Voltar</p>
+                    </div>
+                </div>
+                <div class="noselect">
+                    <p class="noselect">Jogadores</p>
+                </div>
+            </div>
+        </div>
+        <div class="cards-home">
+            <div class="card-home mg-right-10px" onclick="create()">
+                <div>
+                    <p class="font-title">Criar Jogador</p>
+                </div>
+                <div class="img-home-div">
+                    <img draggable="false" src="~/images/neymaradd.png" alt="Add tecnico" />
+                </div>
+            </div>
+            <div class="card-home" onclick="index()">
+                <div>
+                    <p class="font-title">Exibir Jogadores</p>
+                </div>
+                <div class="img-home-div">
+                    <img draggable="false" src="~/images/neymarsee.png" alt="See tecnicos" />
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
+<script>
+    function create() {
+        location.href = '/jogadores/create'
+    }
+
+    function index() {
+        location.href = '/jogadores/index'
+    }
+
+    function voltar() {
+        location.href = '/home/index'
+    }
+</script>

@@ -1,8 +1,52 @@
-﻿
+﻿@model List<JogadoresViewModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<main>
+    <div class="full-width">
+        <div class="option-title">
+            <div class="options">
+                <div class="pointer" onclick="voltar()">
+                    <div class="btn-voltar noselect">
+                        <i class="fas fa-arrow-left noselect"></i>
+                        <p class="noselect">Voltar</p>
+                    </div>
+                </div>
+                <div class="noselect">
+                    <p class="noselect">Técnicos</p>
+                </div>
+            </div>
+        </div>
+        <div class="cards-form">
+            <div class="card-form mg-right-10px">
+                <table class="table table-responsive margintop10">
+                    <tr>
+                        <th style="width: 40px">Ações</th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                    </tr>
+                    @foreach (JogadoresViewModel jogador in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a style="color: dodgerblue; font-size: 15px" href="ferramenta/Edit?id=@jogador.Id"><i class="fas fa-edit"></i></a>
+                                <a style="color: red; font-size: 15px" href="javascript:apagarFerramenta(@jogador.Id)"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <td>@jogador.Id</td>
+                            <td>@jogador.Nome</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function voltar() {
+        location.href = '/jogadores/home'
+    }
+</script>
 

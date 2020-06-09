@@ -1,0 +1,47 @@
+﻿@model TecnicosViewModel
+@{
+    ViewData["Title"] = "Form";
+}
+
+<main>
+    <div class="full-width">
+        <div class="option-title">
+            <div class="options">
+                <div class="btn-voltar noselect">
+                    <i class="fas fa-arrow-left noselect"></i>
+                    <p class="noselect">Voltar</p>
+                </div>
+                <div class="noselect">
+                    <p class="noselect">Técnicos</p>
+                </div>
+            </div>
+        </div>
+        <div class="cards-form">
+            <div class="card-form mg-right-10px">
+                <p class="font-title">Insira as Informações</p>
+                <form action="Salvar" method="post">
+                    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+                    <label for="Id" class="control-label">Id</label>
+                    <input type="number" name="Id" value="@Model.Id" class="form-control disabled" readonly />
+                    <br />
+                    <label for="Nome" class="control-label">Nome</label>
+                    <input type="text" name="Nome" value="@Model.Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                    <br />
+                    <label for="Idade" class="control-label">Idade</label>
+                    <input type="number" name="Idade" value="@Model.Idade" class="form-control" />
+                    <span asp-validation-for="Idade" class="text-danger"></span>
+                    <br />
+                    <label for="NacionalidadeId" class="control-label">Nacionalidade</label>
+                    <select asp-for="NacionalidadeId" asp-items="ViewBag.Nacionalidades" class="form-control"> </select>
+                    <span asp-validation-for="NacionalidadeId" class="text-danger"></span>
+                    <br />
+                    <label for="salvarbutton">
+                        <div class="btn btn-primary">Salvar</div>
+                    </label>
+                    <input type="submit" name="salvarbutton" id="salvarbutton" style="display: none" />
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

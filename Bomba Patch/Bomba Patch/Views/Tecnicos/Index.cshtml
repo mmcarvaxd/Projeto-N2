@@ -1,0 +1,42 @@
+﻿@model List<TecnicosViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main>
+    <div class="full-width">
+        <div class="option-title">
+            <div class="options">
+                <div class="btn-voltar noselect">
+                    <i class="fas fa-arrow-left noselect"></i>
+                    <p class="noselect">Voltar</p>
+                </div>
+                <div class="noselect">
+                    <p class="noselect">Técnicos</p>
+                </div>
+            </div>
+        </div>
+        <div class="cards-form">
+            <div class="card-form mg-right-10px">
+                <table class="table table-responsive margintop10">
+                    <tr>
+                        <th style="width: 40px">Ações</th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                    </tr>
+                    @foreach (TecnicosViewModel tecnico in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a style="color: dodgerblue; font-size: 15px" href="ferramenta/Edit?id=@tecnico.Id"><i class="fas fa-edit"></i></a>
+                                <a style="color: red; font-size: 15px" href="javascript:apagarFerramenta(@tecnico.Id)"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <td>@tecnico.Id</td>
+                            <td>@tecnico.Nome</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

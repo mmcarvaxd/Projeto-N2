@@ -11,5 +11,14 @@ namespace BombaPatch.Models
         public int Idade { get; set; }
         public int NacionalidadeId { get; set; }
 
+        public TecnicosViewModel() { }
+        public TecnicosViewModel(int Id, string Nome, int Idade, int NacionalidadeId)
+        {
+            this.Id = Id;
+            this.Nome = Nome;
+            this.Idade = Idade;
+            this.NacionalidadeId = NacionalidadeId;
+        }
     }
+
 }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace BombaPatch.DAO
 {
-    public abstract class DefaultDAO<T> where T : DefaultViewModel
+    public abstract class DefaultDAO<T> where T : PadraoViewModel
     {
         protected DefaultDAO()
         {

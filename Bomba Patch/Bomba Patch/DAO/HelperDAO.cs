@@ -55,5 +55,4 @@ namespace BombaPatch.DAO
             }
         }
     }
-
 }

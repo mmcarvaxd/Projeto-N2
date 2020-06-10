@@ -31,8 +31,8 @@
                     {
                         <tr>
                             <td>
-                                <a style="color: dodgerblue; font-size: 15px" href="ferramenta/Edit?id=@jogador.Id"><i class="fas fa-edit"></i></a>
-                                <a style="color: red; font-size: 15px" href="javascript:apagarFerramenta(@jogador.Id)"><i class="fas fa-trash"></i></a>
+                                <a style="color: dodgerblue; font-size: 15px" href="/jogadores/Edit?id=@jogador.Id"><i class="fas fa-edit"></i></a>
+                                <a style="color: red; font-size: 15px" href="javascript:apagar(@jogador.Id)"><i class="fas fa-trash"></i></a>
                             </td>
                             <td>@jogador.Id</td>
                             <td>@jogador.Nome</td>
@@ -47,6 +47,40 @@
 <script>
     function voltar() {
         location.href = '/jogadores/home'
+    }
+
+    function apagar(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Voce tem certeza?',
+            text: "Você não poderá reverter esta ação!",
+            imageUrl: 'https://i.pinimg.com/originals/4f/bd/dc/4fbddc0cbb1ed10409d12fe315ed27ca.jpg',
+            imageWidth: 236,
+            imageHeight: 354,
+            showCancelButton: true,
+            confirmButtonText: 'Sim, apagar',
+            cancelButtonText: 'Não, cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = '/jogadores/delete?id=' + id
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Ufa, essa foi por pouco',
+                    'error'
+                )
+            }
+        })
     }
 </script>
 

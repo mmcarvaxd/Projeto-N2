@@ -1,4 +1,4 @@
-﻿@model List<TecnicosViewModel>
+﻿@model List<EstadiosViewModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -14,28 +14,32 @@
                     </div>
                 </div>
                 <div class="noselect">
-                    <p class="noselect">Técnicos</p>
+                    <p class="noselect">Estádios</p>
                 </div>
             </div>
             </div>
-        <div class="cards-form">
-            <div class="card-form mg-right-10px">
+        <div class="cards-index">
+            <div class="card-index mg-right-10px">
                 <table class="table table-responsive margintop10">
                     <tr>
                         <th style="width: 40px">Ações</th>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Capacidade</th>
+                        <th>Localizaçao</th>
                     </tr>
-                    @foreach (TecnicosViewModel tecnico in Model)
+                    @foreach (EstadiosViewModel estadio in Model)
                     {
-                        <tr>
-                            <td>
-                                <a style="color: dodgerblue; font-size: 15px" href="/tecnicos/Edit?id=@tecnico.Id"><i class="fas fa-edit"></i></a>
-                                <a style="color: red; font-size: 15px" href="javascript:apagar(@tecnico.Id)"><i class="fas fa-trash"></i></a>
-                            </td>
-                            <td>@tecnico.Id</td>
-                            <td>@tecnico.Nome</td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <a style="color: dodgerblue; font-size: 15px" href="/estadio/Edit?id=@estadio.Id"><i class="fas fa-edit"></i></a>
+                            <a style="color: red; font-size: 15px" href="javascript:apagar(@estadio.Id)"><i class="fas fa-trash"></i></a>
+                        </td>
+                        <td>@estadio.Id</td>
+                        <td>@estadio.Nome</td>
+                        <td>@estadio.Capacidade</td>
+                        <td>@estadio.Localizacao</td>
+                    </tr>
                     }
                 </table>
             </div>
@@ -44,7 +48,7 @@
 </main>
 <script>
     function voltar() {
-        location.href = '/tecnicos/home'
+        location.href = '/estadio/home'
     }
 
     function apagar(id) {
@@ -68,7 +72,7 @@
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
-                location.href = '/tecnicos/delete?id=' + id
+                location.href = '/estadio/delete?id=' + id
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swalWithBootstrapButtons.fire(
                     'Cancelado',

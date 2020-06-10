@@ -31,8 +31,8 @@ namespace BombaPatch.DAO
                                             Convert.ToString(registro["nome"]),
                                             Convert.ToInt32(registro["idade"]),
                                             Convert.ToInt32(registro["altura"]),
-                                            Convert.ToInt32(registro["pe_preferido"]),
                                             Convert.ToInt32(registro["overall"]),
+                                            Convert.ToInt32(registro["pe_preferido"]),
                                             Convert.ToInt32(registro["nacionalidade"]),
                                             Convert.ToInt32(registro["posicao_preferida"]));
         }

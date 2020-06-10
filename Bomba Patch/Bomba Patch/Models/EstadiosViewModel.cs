@@ -9,18 +9,29 @@ namespace BombaPatch.Models
     public class EstadiosViewModel : PadraoViewModel
     {
         public string Nome { get; set; }
-        public IFormFile Imagem { get; set; }
-        public byte[] ImagemEmByte { get; set; }
+        public int Capacidade { get; set; }
+        public string Localizacao { get; set; }
 
-        public string ImagemEmBase64
+        public EstadiosViewModel() { }
+        public EstadiosViewModel(int Id, string Nome, int Capacidade, string Localizacao)
         {
-            get
-            {
-                if (ImagemEmByte != null)
-                    return Convert.ToBase64String(ImagemEmByte);
-                else
-                    return string.Empty;
-            }
+            this.Id = Id;
+            this.Nome = Nome;
+            this.Capacidade = Capacidade;
+            this.Localizacao = Localizacao;
         }
+        //public IFormFile Imagem { get; set; }
+        //public byte[] ImagemEmByte { get; set; }
+
+        //public string ImagemEmBase64
+        //{
+        //    get
+        //    {
+        //        if (ImagemEmByte != null)
+        //            return Convert.ToBase64String(ImagemEmByte);
+        //        else
+        //            return string.Empty;
+        //    }
+        //}
     }
 }

@@ -25,6 +25,7 @@ namespace BombaPatch.Models
             this.Overall = Overall;
             this.PePreferidoId = PePreferidoId;
             this.PosicaoPreferidaId = PosicaoPreferidaId;
+            this.NacionalidadeId = NacionalidadeId;
         }
     }
 }

@@ -297,6 +297,15 @@ audio {
     padding: 0 10px;
 }
 
+.cards-index .card-index {
+    display: flex;
+    flex-direction: column;
+    width: 1020px;
+    height: 510px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 0 10px;
+}
+
 .btn.btn-primary {
     background-color: var(--primary);
     border-color: var(--primary);

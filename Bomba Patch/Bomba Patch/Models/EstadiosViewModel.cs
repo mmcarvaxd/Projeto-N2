@@ -20,18 +20,5 @@ namespace BombaPatch.Models
             this.Capacidade = Capacidade;
             this.Localizacao = Localizacao;
         }
-        //public IFormFile Imagem { get; set; }
-        //public byte[] ImagemEmByte { get; set; }
-
-        //public string ImagemEmBase64
-        //{
-        //    get
-        //    {
-        //        if (ImagemEmByte != null)
-        //            return Convert.ToBase64String(ImagemEmByte);
-        //        else
-        //            return string.Empty;
-        //    }
-        //}
     }
 }

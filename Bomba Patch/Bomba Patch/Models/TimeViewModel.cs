@@ -1,4 +1,5 @@
 ﻿using BombaPatch.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,27 @@ namespace BombaPatch.Models
         public string Sigla { get; set; }
         public int EstadioId { get; set; }
         public int TecnicoId { get; set; }
+        public IFormFile Logo { get; set; }
+        public byte[] LogoEmByte { get; set; }
 
+        public string LogoEmBase64
+        {
+            get
+            {
+                if (LogoEmByte != null)
+                    return Convert.ToBase64String(LogoEmByte);
+                else
+                    return string.Empty;
+            }
+        }
+
+        public TimeViewModel() { }
+        public TimeViewModel(int Id, string Nome, string sigla, int EstadioId, int TecnicoId) {
+            this.Id = Id;
+            this.Nome = Nome;
+            this.Sigla = sigla;
+            this.EstadioId = EstadioId;
+            this.TecnicoId = TecnicoId;
+        }
     }
 }

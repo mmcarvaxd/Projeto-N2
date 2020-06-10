@@ -1,0 +1,75 @@
+﻿@model TimeViewModel
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="full-width">
+        <div class="option-title">
+            <div class="options">
+                <div class="pointer" onclick="voltar()">
+                    <div class="btn-voltar noselect">
+                        <i class="fas fa-arrow-left noselect"></i>
+                        <p class="noselect">Voltar</p>
+                    </div>
+                </div>
+                <div class="noselect">
+                    <p class="noselect">Técnicos</p>
+                </div>
+            </div>
+        </div>
+        <form action="Salvar" method="post" enctype="multipart/form-data">
+            <div class="cards-form" style="display: flex">
+                <div class="card-form mg-right-10px">
+                    <p class="font-title">Insira as Informações</p>
+                    <br />
+                    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+                    <label for="Id" class="control-label">Id</label>
+                    <input type="number" name="Id" value="@Model.Id" class="form-control disabled" readonly />
+                    <br />
+                    <label for="Nome" class="control-label">Nome</label>
+                    <input type="text" name="Nome" value="@Model.Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                    <br />
+                    <label for="Sigla" class="control-label">Sigla</label>
+                    <input type="text" name="Sigla" value="@Model.Sigla" class="form-control" />
+                    <span asp-validation-for="Sigla" class="text-danger"></span>
+                </div>
+                <div class="card-form mg-right-10px">
+                    <br />
+                    <label for="TecnicoId" class="control-label">Técnico</label>
+                    <select asp-for="TecnicoId" asp-items="ViewBag.Tecnicos" class="form-control"> </select>
+                    <span asp-validation-for="TecnicoId" class="text-danger"></span>
+                    <br />
+                    <label for="EstadioId" class="control-label">Estádio</label>
+                    <select asp-for="EstadioId" asp-items="ViewBag.Estadios" class="form-control"> </select>
+                    <span asp-validation-for="EstadioId" class="text-danger"></span>
+                    <br />
+                    <input type="file" name="Logo" id="Logo" onchange="exibirImagem()" class="btn btn-secondary">
+                    <img id="imgPreview" src="data:image/jpeg;base64,@Model.LogoEmBase64" class="img-responsive"
+                         width="100">
+                    <span asp-validation-for="Logo" class="text-danger"></span>
+                    <br />
+                    <label for="salvarbutton">
+                        <div class="btn btn-primary">Salvar</div>
+                    </label>
+                    <input type="submit" name="salvarbutton" id="salvarbutton" style="display: none" />
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script>
+    function voltar() {
+        location.href = '/times/home'
+    }
+    function exibirImagem() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("Logo").files[0]);
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("imgPreview").src = oFREvent.target.result;
+        };
+    }
+</script>

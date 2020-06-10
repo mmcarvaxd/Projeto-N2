@@ -28,7 +28,7 @@
                     <img draggable="false" src="~/images/ronaldo.png" alt="" class="img-card">
                 </div>
             </div>
-            <div class="card">
+            <div class="card" onclick="timesHome()">
                 <div>
                     <p class="font-title">Times</p>
                 </div>
@@ -86,5 +86,9 @@
 
     function estadioHome() {
         location.href = '/estadio/home'
+    }
+
+    function timesHome() {
+        location.href = '/times/home'
     }
 </script>

@@ -1,0 +1,88 @@
+﻿@model List<TimeViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="full-width">
+        <div class="option-title">
+            <div class="options">
+                <div class="pointer" onclick="voltar()">
+                    <div class="btn-voltar noselect">
+                        <i class="fas fa-arrow-left noselect"></i>
+                        <p class="noselect">Voltar</p>
+                    </div>
+                </div>
+                <div class="noselect">
+                    <p class="noselect">Times</p>
+                </div>
+            </div>
+        </div>
+        <div class="cards-form">
+            <div class="card-form mg-right-10px">
+                <table class="table table-responsive margintop10">
+                    <tr>
+                        <th style="width: 40px">Ações</th>
+                        <th>ID</th>
+                        <th>Logo</th>
+                        <th>Nome</th>
+                    </tr>
+                    @foreach (TimeViewModel time in Model)
+                    {
+                    <tr>
+                        <td>
+                            <a style="color: dodgerblue; font-size: 15px" href="/times/Edit?id=@time.Id"><i class="fas fa-edit"></i></a>
+                            <a style="color: red; font-size: 15px" href="javascript:apagar(@time.Id)"><i class="fas fa-trash"></i></a>
+                        </td>
+                        <td>@time.Id</td>
+                        <td><img src="data:image/jpeg;base64,@time.LogoEmBase64" alt="Alternate Text" class="img-logo"/></td>
+                        <td>@time.Nome</td>
+                    </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function voltar() {
+        location.href = '/times/home'
+    }
+
+    function apagar(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Voce tem certeza?',
+            text: "Você não poderá reverter esta ação!",
+            imageUrl: 'https://i.pinimg.com/originals/4f/bd/dc/4fbddc0cbb1ed10409d12fe315ed27ca.jpg',
+            imageWidth: 236,
+            imageHeight: 354,
+            showCancelButton: true,
+            confirmButtonText: 'Sim, apagar',
+            cancelButtonText: 'Não, cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = '/times/delete?id=' + id
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Ufa, essa foi por pouco',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
+

@@ -98,5 +98,6 @@ namespace BombaPatch.Controllers
             DAO = new TimesDAO();
             GeraProximoId = true;
         }
+
     }
 }

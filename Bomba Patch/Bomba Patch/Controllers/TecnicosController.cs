@@ -39,11 +39,16 @@ namespace BombaPatch.Controllers
             }
             ViewBag.Nacionalidades = listaNacionalidades;
         }
-        //protected override void ValidaDados(CidadeViewModel model, string operacao)
-        //{
-        //    base.ValidaDados(model, operacao);
-        //    if (string.IsNullOrEmpty(model.Nome))
-        //        ModelState.AddModelError("Nome", "Preencha o nome.");
-        //}
+        protected override void ValidaDados(TecnicosViewModel model, string operacao)
+        {
+            base.ValidaDados(model, operacao);
+
+            if (model.Idade < 18)
+                ModelState.AddModelError("Idade", "Idade minima 18 anos");
+            if (model.NacionalidadeId == 0)
+                ModelState.AddModelError("NacionalidadeId", "Escolha uma opção");
+            if (String.IsNullOrEmpty(model.Nome))
+                ModelState.AddModelError("Nome", "Nome inválido");
+        }
     }
 }

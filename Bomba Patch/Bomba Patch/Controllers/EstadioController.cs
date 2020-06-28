@@ -20,5 +20,18 @@ namespace BombaPatch.Controllers
             DAO = new EstadioDAO();
             GeraProximoId = true;
         }
+
+        protected override void ValidaDados(EstadiosViewModel model, string operacao)
+        {
+            base.ValidaDados(model, operacao);
+
+            if (String.IsNullOrEmpty(model.Nome))
+                ModelState.AddModelError("Nome", "Nome não é valido");
+            if(model.Capacidade <= 0)
+                ModelState.AddModelError("Capacidade", "Capacidade inválida");
+            if (String.IsNullOrEmpty(model.Localizacao))
+                ModelState.AddModelError("Localizacao", "Digite uma localização");
+        }
+
     }
 }

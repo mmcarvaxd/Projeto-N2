@@ -64,5 +64,25 @@ namespace BombaPatch.Controllers
             }
             ViewBag.PosicoesPreferidas = listaPosPreferido;
         }
+
+        protected override void ValidaDados(JogadoresViewModel model, string operacao)
+        {
+            base.ValidaDados(model, operacao);
+
+            if (String.IsNullOrEmpty(model.Nome))
+                ModelState.AddModelError("Nome", "Nome inválido");
+            if(model.Idade < 15)
+                ModelState.AddModelError("Idade", "Idade minima 15 anos");
+            if(model.Overall < 0 || model.Overall > 100)
+                ModelState.AddModelError("Idade", "Jogadores apenas possuem um Overall entre 0 e 99");
+            if (model.Altura < 150 || model.Altura > 210)
+                ModelState.AddModelError("Altura", "O jogador deve possuim uma altura entre 150cm e 210cm");
+            if (model.NacionalidadeId == 0)
+                ModelState.AddModelError("NacionalidadeId", "Escolha uma opção");
+            if (model.PePreferidoId == 0)
+                ModelState.AddModelError("PePreferidoId", "Escolha uma opção");
+            if (model.PosicaoPreferidaId == 0)
+                ModelState.AddModelError("PosicaoPreferidaId", "Escolha uma opção");
+        }
     }
 }

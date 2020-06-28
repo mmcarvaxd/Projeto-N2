@@ -19,23 +19,18 @@ namespace BombaPatch.Controllers
             return View(lista);
         }
 
-        public IActionResult Create()
+        public IActionResult Create() { 
             try
             {
-                var lista = DAO.Listagem();
-                return View(lista);
+                ViewBag.Operacao = "I";
+                T model = Activator.CreateInstance(typeof(T)) as T;
+                PreencheDadosParaView("I", model);
+                return View("Form", model);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
-        }
-        public IActionResult Create(int id)
-        {
-            ViewBag.Operacao = "I";
-            T model = Activator.CreateInstance(typeof(T)) as T;
-            PreencheDadosParaView("I", model);
-            return View("Form", model);
         }
 
         protected virtual void PreencheDadosParaView(string Operacao, T model)

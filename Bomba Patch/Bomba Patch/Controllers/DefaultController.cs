@@ -20,6 +20,17 @@ namespace BombaPatch.Controllers
         }
 
         public IActionResult Create()
+            try
+            {
+                var lista = DAO.Listagem();
+                return View(lista);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public IActionResult Create(int id)
         {
             ViewBag.Operacao = "I";
             T model = Activator.CreateInstance(typeof(T)) as T;
@@ -29,8 +40,15 @@ namespace BombaPatch.Controllers
 
         protected virtual void PreencheDadosParaView(string Operacao, T model)
         {
-            if (GeraProximoId && Operacao == "I")
-                model.Id = DAO.ProximoId();
+            try
+            {
+                if (GeraProximoId && Operacao == "I")
+                    model.Id = DAO.ProximoId();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         public IActionResult Salvar(T model, string Operacao)
         {
@@ -62,12 +80,19 @@ namespace BombaPatch.Controllers
         }
         protected virtual void ValidaDados(T model, string operacao)
         {
-            if (operacao == "I" && DAO.Consulta(model.Id) != null)
-                ModelState.AddModelError("Id", "Código já está em uso!");
-            if (operacao == "A" && DAO.Consulta(model.Id) == null)
-                ModelState.AddModelError("Id", "Este registro não existe!");
-            if (model.Id < 0)
-                ModelState.AddModelError("Id", "Id inválido!");
+            try
+            {
+                if (operacao == "I" && DAO.Consulta(model.Id) != null)
+                    ModelState.AddModelError("Id", "Código já está em uso!");
+                if (operacao == "A" && DAO.Consulta(model.Id) == null)
+                    ModelState.AddModelError("Id", "Este registro não existe!");
+                if (model.Id < 0)
+                    ModelState.AddModelError("Id", "Id inválido!");
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         public IActionResult Edit(int id)
         {

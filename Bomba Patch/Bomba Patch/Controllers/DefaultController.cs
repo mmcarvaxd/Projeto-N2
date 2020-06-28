@@ -126,7 +126,7 @@ namespace BombaPatch.Controllers
             if (!HelperController.VerificaUserLogado(HttpContext.Session))
             {
                 ViewBag.Logado = false;
-                context.Result = RedirectToAction("Index", "Home");
+                context.Result = RedirectToAction("Index", "Login");
             }
             else
             {

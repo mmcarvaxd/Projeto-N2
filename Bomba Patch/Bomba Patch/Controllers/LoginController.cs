@@ -23,7 +23,14 @@ namespace BombaPatch.Controllers
 
         public IActionResult Index()
         {
-            return View(new UsuariosViewModel());
+            if(!HelperController.VerificaUserLogado(HttpContext.Session))
+            {
+                return View(new UsuariosViewModel());
+            }
+            else
+            {
+                return RedirectToAction("index", "Home");
+            }
         }
 
         public IActionResult FazLogin(UsuariosViewModel usuario)
@@ -73,7 +80,11 @@ namespace BombaPatch.Controllers
                     if (Operacao == "I")
                         DAO.Insert(model);
                     else
+                    {
                         DAO.Update(model);
+                        ViewBag.nome_usuario = model.Nome;
+                        HttpContext.Session.SetString("nome_usuario", model.Nome);
+                    }
                     return RedirectToAction("index");
                 }
             }

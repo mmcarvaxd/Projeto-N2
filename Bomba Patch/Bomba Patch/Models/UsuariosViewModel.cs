@@ -11,5 +11,13 @@ namespace BombaPatch.Models
         public string Email { get; set; }
         public string Senha { get; set; }
 
+        public UsuariosViewModel() { }
+        public UsuariosViewModel(int Id, string Nome, string Email, string Senha)
+        {
+            this.Id = Id;
+            this.Nome = Nome;
+            this.Email = Email;
+            this.Senha = Senha;
+        }
     }
 }

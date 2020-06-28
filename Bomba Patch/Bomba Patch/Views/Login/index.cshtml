@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "index";
+}
+<main>
+    <div class="container-login">
+        <div class="cards-login">
+            <div class="card-login" onclick="tecnicosHome()">
+                <form action="/login/FazLogin" method="post">
+                    <p class="font-title">Insira seu Login</p>
+                    <br />
+                    <label for="email" class="control-label">Email</label>
+                    <input type="email" name="email" class="form-control" />
+                    <br />
+                    <label for="senha" class="control-label">Senha</label>
+                    <input type="password" name="senha" class="form-control" />
+                    <br />
+                    <label for="salvarbutton">
+                        <div class="btn btn-primary">Logar</div>
+                    </label>
+                    <input type="submit" name="salvarbutton" id="salvarbutton" style="display: none" />
+                </form>
+                <br />
+                <a href="/login/create">Registrar!</a>
+            </div>
+        </div>
+    </div>
+</main>

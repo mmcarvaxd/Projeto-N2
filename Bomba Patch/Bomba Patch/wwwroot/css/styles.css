@@ -337,3 +337,22 @@ audio {
     max-width: 50px;
     max-height: 50px;
 }
+
+.container-login {
+    width: 100%;
+}
+
+#page-home .content main .cards-login {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+    #page-home .content main .cards-login .card-login {
+        background-color: rgba(255, 255, 255, 0.95);
+        height: 340px;
+        width: 450px;
+        transition: 400ms;
+        padding: 10px;
+    }

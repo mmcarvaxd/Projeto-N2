@@ -29,8 +29,15 @@
         <div class="content">
             <header>
                 <div class="menu">
-                    <p>Login!</p>
-                    <p>Registar!</p>
+                    @if (ViewBag.Logado == null || ViewBag.Logado == false)
+                    {
+                        <p onclick="login()">Login!</p>
+                        <p onclick="registrar()">Registar!</p>
+                    }
+                    else
+                    {
+                        <p onclick="logoff()">@ViewBag.nome_usuario</p>
+                    }
                 </div>
             </header>
             @RenderBody()
@@ -68,4 +75,17 @@
 
     @RenderSection("Scripts", required: false)
 </body>
+<script>
+    function login() {
+        location.href = '/login/index'
+    }
+
+    function registrar() {
+        location.href = '/login/create'
+    }
+
+    function logoff() {
+        location.href = '/login/LogOff'
+    }
+</script>
 </html>

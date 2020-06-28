@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="titles">
-            <div class="title">
+            <div class="title" onclick="config(@ViewBag.id_usuario)">
                 <div>
                     <p class="font-title">Configurações</p>
                 </div>
@@ -90,5 +90,11 @@
 
     function timesHome() {
         location.href = '/times/home'
+    }
+
+    function config(id) {
+        if (id) {
+            location.href = '/login/Edit?id=' + id
+        }
     }
 </script>

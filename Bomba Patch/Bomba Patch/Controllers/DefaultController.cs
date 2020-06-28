@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BombaPatch.DAO;
 using BombaPatch.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace BombaPatch.Controllers
 {
@@ -12,12 +13,13 @@ namespace BombaPatch.Controllers
     {
         protected DefaultDAO<T> DAO { get; set; }
         protected bool GeraProximoId { get; set; }
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var lista = DAO.Listagem();
             return View(lista);
         }
-        public IActionResult Create(int id)
+
+        public IActionResult Create()
         {
             ViewBag.Operacao = "I";
             T model = Activator.CreateInstance(typeof(T)) as T;
@@ -98,5 +100,21 @@ namespace BombaPatch.Controllers
                 return RedirectToAction("index");
             }
         }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!HelperController.VerificaUserLogado(HttpContext.Session))
+            {
+                ViewBag.Logado = false;
+                context.Result = RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Logado = true;
+                ViewBag.nome_usuario = HelperController.getUserName(HttpContext.Session);
+                ViewBag.id_usuario = HelperController.getId(HttpContext.Session);
+                base.OnActionExecuting(context);
+            }
+        }
     }
 }

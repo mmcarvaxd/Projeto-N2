@@ -65,37 +65,50 @@ namespace BombaPatch.Controllers
         protected override void PreencheDadosParaView(string Operacao, TimeViewModel model)
         {
             base.PreencheDadosParaView(Operacao, model);
-
-            TecnicoDAO TDao = new TecnicoDAO();
-
-            List<TecnicosViewModel> tecnicos = TDao.Listagem();
-            tecnicos.Sort((tecA, tecB) => tecA.Nome.CompareTo(tecB.Nome));
-
-            List<SelectListItem> listaTecnicos = new List<SelectListItem>();
-            listaTecnicos.Add(new SelectListItem("Selecione um Tecnico...", "0"));
-            foreach (TecnicosViewModel tecnico in tecnicos)
+            try
             {
-                SelectListItem item = new SelectListItem(tecnico.Nome, tecnico.Id.ToString());
-                listaTecnicos.Add(item);
+                TecnicoDAO TDao = new TecnicoDAO();
+
+                List<TecnicosViewModel> tecnicos = TDao.Listagem();
+                tecnicos.Sort((tecA, tecB) => tecA.Nome.CompareTo(tecB.Nome));
+
+                List<SelectListItem> listaTecnicos = new List<SelectListItem>();
+                listaTecnicos.Add(new SelectListItem("Selecione um Tecnico...", "0"));
+                foreach (TecnicosViewModel tecnico in tecnicos)
+                {
+                    SelectListItem item = new SelectListItem(tecnico.Nome, tecnico.Id.ToString());
+                    listaTecnicos.Add(item);
+                }
+                ViewBag.Tecnicos = listaTecnicos;
+
+                EstadioDAO EDao = new EstadioDAO();
+                List<EstadiosViewModel> estadios = EDao.Listagem();
+
+                List<SelectListItem> listaEstadios = new List<SelectListItem>();
+                listaEstadios.Add(new SelectListItem("Selecione um Estadio...", "0"));
+                foreach (EstadiosViewModel estadio in estadios)
+                {
+                    SelectListItem item = new SelectListItem(estadio.Nome, estadio.Id.ToString());
+                    listaEstadios.Add(item);
+                }
+                ViewBag.Estadios = listaEstadios;
             }
-            ViewBag.Tecnicos = listaTecnicos;
-
-            EstadioDAO EDao = new EstadioDAO();
-            List<EstadiosViewModel> estadios = EDao.Listagem();
-
-            List<SelectListItem> listaEstadios = new List<SelectListItem>();
-            listaEstadios.Add(new SelectListItem("Selecione um Estadio...", "0"));
-            foreach (EstadiosViewModel estadio in estadios)
+            catch(Exception e)
             {
-                SelectListItem item = new SelectListItem(estadio.Nome, estadio.Id.ToString());
-                listaEstadios.Add(item);
+                throw new Exception(e.Message);
             }
-            ViewBag.Estadios = listaEstadios;
         }
 
         public TimesController()
         {
-            DAO = new TimesDAO();
+            try
+            {
+                DAO = new TimesDAO();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
             GeraProximoId = true;
         }
 

@@ -17,7 +17,15 @@ namespace BombaPatch.Controllers
 
         public EstadioController()
         {
-            DAO = new EstadioDAO();
+            try
+            {
+                DAO = new EstadioDAO();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
             GeraProximoId = true;
         }
 

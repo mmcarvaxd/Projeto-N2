@@ -13,6 +13,7 @@ namespace BombaPatch.Models
         public string Sigla { get; set; }
         public int EstadioId { get; set; }
         public int TecnicoId { get; set; }
+        public int UsuarioId { get; set; }
         public IFormFile Logo { get; set; }
         public byte[] LogoEmByte { get; set; }
 
@@ -28,7 +29,7 @@ namespace BombaPatch.Models
         }
 
         public TimeViewModel() { }
-        public TimeViewModel(int Id, string Nome, string sigla, int EstadioId, int TecnicoId) {
+        public TimeViewModel(int Id, string Nome, string sigla, int EstadioId, int TecnicoId, int UsuarioId) {
             this.Id = Id;
             this.Nome = Nome;
             this.Sigla = sigla;

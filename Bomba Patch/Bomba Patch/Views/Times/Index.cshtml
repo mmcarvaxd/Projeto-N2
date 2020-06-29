@@ -32,6 +32,7 @@
                     {
                     <tr>
                         <td>
+                            <a style="color: greenyellow; font-size: 15px" href="javascript:jogadores(@time.Id)"><i class="fas fa fa-plus-circle"></i></a>
                             <a style="color: dodgerblue; font-size: 15px" href="/times/Edit?id=@time.Id"><i class="fas fa-edit"></i></a>
                             <a style="color: red; font-size: 15px" href="javascript:apagar(@time.Id)"><i class="fas fa-trash"></i></a>
                         </td>
@@ -49,6 +50,10 @@
 <script>
     function voltar() {
         location.href = '/times/home'
+    }
+
+    function jogadores(id) {
+        location.href = '/TimeJogador/Create?TimeId=' + id
     }
 
     function apagar(id) {

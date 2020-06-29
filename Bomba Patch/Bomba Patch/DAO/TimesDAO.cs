@@ -22,6 +22,7 @@ namespace BombaPatch.DAO
                 new SqlParameter("nome", model.Nome),
                 new SqlParameter("sigla", model.Sigla),
                 new SqlParameter("id_tecnico", model.TecnicoId),
+                new SqlParameter("id_usuario", model.UsuarioId),
                 new SqlParameter("estadio", model.EstadioId),
                 new SqlParameter("logo", imgByte)
             };
@@ -33,7 +34,8 @@ namespace BombaPatch.DAO
                                      Convert.ToString(registro["nome"]),
                                      Convert.ToString(registro["sigla"]),
                                      Convert.ToInt32(registro["estadio"]),
-                                     Convert.ToInt32(registro["id_tecnico"]));
+                                     Convert.ToInt32(registro["id_tecnico"]),
+                                     Convert.ToInt32(registro["id_usuario"]));
 
             if (registro["logo"] != DBNull.Value)
                 time.LogoEmByte = registro["logo"] as byte[];

@@ -1,0 +1,80 @@
+﻿@model List<TimeJogadorViewModel>
+@{
+    ViewData["Title"] = "Form";
+}
+
+<main>
+    <div class="full-width">
+        <div class="option-title">
+            <div class="options">
+                <div class="pointer" onclick="voltar()">
+                    <div class="btn-voltar noselect">
+                        <i class="fas fa-arrow-left noselect"></i>
+                        <p class="noselect">Voltar</p>
+                    </div>
+                </div>
+                <div class="noselect">
+                    <p class="noselect">Times</p>
+                </div>
+            </div>
+        </div>
+        <form action="Salvar" method="post" enctype="multipart/form-data">
+            <div class="cards-form" style="display: flex">
+                <div class="card-form mg-right-10px" style="padding-bottom: 10px;">
+                    <p class="font-title">Edite os Jogadores</p>
+                    <br />
+                    <div style="display: flex; flex-direction: column; overflow-x: auto;">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <div style="display: flex">
+                                <div style="width: 45%; padding-right: 10px;">
+                                    @*<input type="hidden" name="model[@i].Id" value="@Model[@i].Id" class="form-control disabled" readonly />*@
+                                    @Html.TextBox("model[" + @i + "].Id", Model[i].Id, new { @type = "hidden" })
+                                    @Html.TextBox("model[" + @i + "].TimeId", Model[i].TimeId, new { @type = "hidden" })
+                                    <label for="JogadorId" class="control-label">Jogador</label>
+                                    @Html.DropDownListFor(m => Model[i].JogadorId, (List<SelectListItem>)ViewBag.Jogadores, new { @class = "form-control" })
+                                </div>
+                                <div style="width: 30%; padding-right: 10px;">
+                                    <label for="PosicaoId" class="control-label">Posição</label>
+                                    @Html.DropDownListFor(m => Model[i].PosicaoId, (List<SelectListItem>)ViewBag.Posicoes, new { @class = "form-control" })
+                                </div>
+                                <div style="width: 25%;">
+                                    <label for="jogadores[@i].NmrCamiseta" class="control-label">N.º da Camiseta</label>
+                                    @Html.TextBox("model[" + @i + "].NmrCamiseta", Model[i].NmrCamiseta, new { @class = "form-control", @type = "number" })
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <label for="salvarbutton">
+                        <div class="btn btn-primary">Salvar</div>
+                    </label>
+                    <input type="submit" name="salvarbutton" id="salvarbutton" style="display: none" />
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function voltar() {
+        location.href = '/times/home'
+    }
+    function exibirImagem() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("Logo").files[0]);
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("imgPreview").src = oFREvent.target.result;
+        };
+    }
+
+    function fixName() {
+        var aux = $('select')
+        for (var i = 0; i < aux.length; i++) {
+            var auxa = aux[i]
+            auxa.name = "model" + auxa.name
+        }
+    }
+
+    fixName()
+</script>

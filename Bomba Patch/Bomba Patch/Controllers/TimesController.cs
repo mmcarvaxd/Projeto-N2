@@ -91,6 +91,8 @@ namespace BombaPatch.Controllers
                     SelectListItem item = new SelectListItem(estadio.Nome, estadio.Id.ToString());
                     listaEstadios.Add(item);
                 }
+
+                model.UsuarioId = Convert.ToInt32(ViewBag.id_usuario);
                 ViewBag.Estadios = listaEstadios;
             }
             catch(Exception e)

@@ -35,7 +35,8 @@ namespace BombaPatch.DAO
                                      Convert.ToString(registro["sigla"]),
                                      Convert.ToInt32(registro["estadio"]),
                                      Convert.ToInt32(registro["id_tecnico"]),
-                                     Convert.ToInt32(registro["id_usuario"]));
+                                     Convert.ToInt32(registro["id_usuario"]),
+                                     Convert.ToInt32(registro["overall"]));
 
             if (registro["logo"] != DBNull.Value)
                 time.LogoEmByte = registro["logo"] as byte[];

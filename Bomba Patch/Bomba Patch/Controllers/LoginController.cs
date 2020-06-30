@@ -35,6 +35,12 @@ namespace BombaPatch.Controllers
 
         public IActionResult FazLogin(UsuariosViewModel usuario)
         {
+            if(usuario.Email == null || usuario.Senha == null)
+            {
+                ViewBag.Erro = "Email ou senha inválidos!";
+                return View("index", usuario);
+            }
+
             UsuariosViewModel user = (DAO as UsuarioDAO).GetUsuario(usuario.Email, usuario.Senha);
             if (user.Id != 0)
             {
@@ -46,7 +52,7 @@ namespace BombaPatch.Controllers
             else
             {
                 ViewBag.Erro = "Usuário ou senha inválidos!";
-                return View("index");
+                return View("index", usuario);
             }
         }
 

@@ -4,6 +4,7 @@
 }
 
 <main>
+
     <div class="full-width">
         <div class="option-title">
             <div class="options">
@@ -50,6 +51,35 @@
                     </label>
                     <input type="submit" name="salvarbutton" id="salvarbutton" style="display: none" />
                 </div>
+                @if (ViewBag.hasErros != null && ViewBag.hasErros)
+                {
+                    <div class="alert alert-warning" role="alert">
+                        @if (ViewBag.hasDupGoleiro != null && ViewBag.hasDupGoleiro)
+                        {
+                            <p>Seu Time possui mais de um goleiro</p>
+                        }
+
+                        @if (ViewBag.hasCamisetaRepetida != null && ViewBag.hasCamisetaRepetida)
+                        {
+                            <p>Seu Time possui um ou mais numeros de camiseta repetidas</p>
+                        }
+
+                        @if (ViewBag.hasJogadorRepetido != null && ViewBag.hasJogadorRepetido)
+                        {
+                            <p>Seu Time possui um ou mais jogador repetidos</p>
+                        }
+
+                        @if (ViewBag.goleiroMissing != null && ViewBag.goleiroMissing)
+                        {
+                            <p>Seu Time não possui um goleiro</p>
+                        }
+
+                        @if (ViewBag.hasInvalidNumber != null && ViewBag.hasInvalidNumber)
+                        {
+                            <p>Seu Time possui uma camiseta com numero inválido (<= 0 ou > 1000)</p>
+                        }
+                    </div>
+                }
             </div>
         </form>
     </div>

@@ -18,14 +18,14 @@ namespace BombaPatch.Controllers
                 ViewBag.Operacao = "I";
                 TimeJogadorDAO DAO = new TimeJogadorDAO();
                 List<TimeJogadorViewModel> model = DAO.Listagem(timeId);
-                if(model.Count == 0)
+                if (model.Count == 0)
                 {
                     for (int i = 0; i < 11; i++)
                     {
                         model.Add(new TimeJogadorViewModel(timeId));
                     }
-                }                
-                PreencheDadosParaView("I", model);
+                }
+                PreencheDadosParaView(model);
                 return View("Form", model);
             }
             catch (Exception e)
@@ -34,8 +34,72 @@ namespace BombaPatch.Controllers
             }
         }
 
+        private bool ValidaJogadores(List<TimeJogadorViewModel> model)
+        {
+            List<string> erros = new List<string>();
+            bool hasGoleiro = false;
+            bool hasErros = false;
+            List<int> nmrscamiseta = new List<int>();
+            List<int> jogadores = new List<int>();
+
+            foreach (var item in model)
+            {
+                jogadores.Add(item.JogadorId);
+                nmrscamiseta.Add(item.NmrCamiseta);
+            }
+
+            foreach (var item in model)
+            {
+                if (item.PosicaoId == 1)
+                {
+                    if (hasGoleiro)
+                    {
+                        ViewBag.hasDupGoleiro = true;
+                        hasErros = true;
+                    }
+                    else
+                    {
+                        hasGoleiro = true;
+                    }
+                }
+
+                if(item.NmrCamiseta <= 0 || item.NmrCamiseta > 1000)
+                {
+                    ViewBag.hasInvalidNumber = true;
+                    hasErros = true;
+                }
+
+                int camisetarep = nmrscamiseta.FindAll(nrm => nrm == item.NmrCamiseta).Count;
+                if (camisetarep > 1)
+                {
+                    ViewBag.hasCamisetaRepetida = true;
+                    hasErros = true;
+                }
+
+                int jogrep = jogadores.FindAll(jog => jog == item.JogadorId).Count;
+                if (jogrep > 1)
+                {
+                    ViewBag.hasJogadorRepetido = true;
+                    hasErros = true;
+                }
+            }
+
+            ViewBag.goleiroMissing = !hasGoleiro;
+            if (!hasGoleiro)
+                hasErros = true;
+
+            ViewBag.hasErros = hasErros;
+            return hasErros;
+        }
+
         public IActionResult Salvar(List<TimeJogadorViewModel> model)
         {
+            if(ValidaJogadores(model))
+            {
+                PreencheDadosParaView(model);
+                return View("Form", model);
+            }
+
             using (var transacao = new System.Transactions.TransactionScope())
             {
                 TimeJogadorDAO DAO = new TimeJogadorDAO();
@@ -50,7 +114,7 @@ namespace BombaPatch.Controllers
             return RedirectToAction("Index", "Times");
         }
 
-        protected void PreencheDadosParaView(string Operacao, List<TimeJogadorViewModel> model)
+        protected void PreencheDadosParaView(List<TimeJogadorViewModel> model)
         {
             PosicoesDAO DAOP = new PosicoesDAO();
             List<PosicoesViewModel> posicoes = DAOP.Listagem();

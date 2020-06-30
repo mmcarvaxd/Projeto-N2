@@ -23,23 +23,29 @@
             <div class="card-index mg-right-10px">
                 <table class="table table-responsive margintop10">
                     <tr>
-                        <th style="width: 40px">Ações</th>
+                        <th style="width: 150px">Ações</th>
                         <th>ID</th>
                         <th>Logo</th>
                         <th>Nome</th>
+                        <th>Overall</th>
                     </tr>
                     @foreach (TimeViewModel time in Model)
                     {
-                    <tr>
-                        <td>
-                            <a style="color: greenyellow; font-size: 15px" href="javascript:jogadores(@time.Id)"><i class="fas fa fa-plus-circle"></i></a>
-                            <a style="color: dodgerblue; font-size: 15px" href="/times/Edit?id=@time.Id"><i class="fas fa-edit"></i></a>
-                            <a style="color: red; font-size: 15px" href="javascript:apagar(@time.Id)"><i class="fas fa-trash"></i></a>
-                        </td>
-                        <td>@time.Id</td>
-                        <td><img src="data:image/jpeg;base64,@time.LogoEmBase64" alt="Alternate Text" class="img-logo"/></td>
-                        <td>@time.Nome</td>
-                    </tr>
+                        <tr>
+                            <td>
+                                @if (time.UsuarioId == Convert.ToInt32(ViewBag.id_usuario))
+                                {
+                                    <a title="Editar Jogadores" style="color: greenyellow; font-size: 15px" href="javascript:jogadores(@time.Id)"><i class="fas fa fa-plus-circle"></i></a>
+                                    <a title="Editar Time" style="color: dodgerblue; font-size: 15px" href="/times/Edit?id=@time.Id"><i class="fas fa-edit"></i></a>
+                                    <a title="Excluir Time" style="color: red; font-size: 15px" href="javascript:apagar(@time.Id)"><i class="fas fa-trash"></i></a>
+                                }
+                                <a title="Visualizar Time" style="color: red; font-size: 15px" href="javascript:apagar(@time.Id)"><i class="fa fa-address-card"></i></a>
+                            </td>
+                            <td>@time.Id</td>
+                            <td><img src="data:image/jpeg;base64,@time.LogoEmBase64" alt="Alternate Text" class="img-logo" /></td>
+                            <td>@time.Nome</td>
+                            <td>@time.Overall</td>
+                        </tr>
                     }
                 </table>
             </div>

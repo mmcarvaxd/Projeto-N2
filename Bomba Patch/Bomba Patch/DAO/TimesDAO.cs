@@ -48,5 +48,24 @@ namespace BombaPatch.DAO
         {
             Tabela = "tb_time";
         }
+
+        public List<TimeViewModel> ListagemComFiltro(string nomeTime, string siglaTime, int OrderBy, int UsuarioId)
+        {
+
+            var tabela = HelperDAO.ExecutaProcSelect("spListagemFiltroTime", new SqlParameter[]
+            {
+                new SqlParameter("nome", nomeTime),
+                new SqlParameter("sigla", siglaTime),
+                new SqlParameter("id_usuario", UsuarioId),
+                new SqlParameter("ordem", OrderBy)
+            });
+
+            List<TimeViewModel> lista = new List<TimeViewModel>();
+            foreach (DataRow registro in tabela.Rows)
+            {
+                lista.Add(MontaModel(registro));
+            }
+            return lista;
+        }
     }
 }

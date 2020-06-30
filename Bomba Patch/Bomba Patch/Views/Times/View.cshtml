@@ -1,0 +1,73 @@
+﻿@model TimeViewModel
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div style="width:100%;">
+        <div>
+            <div style="width:100%;">
+                <div class="option-title">
+                    <div class="options">
+                        <ul class="nav nav-tabs">
+                            <li><a href="/Times/index">Voltar</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="home">
+                    <div class="card-about" style="padding-right: 15px;">
+                        <div>
+                            <p class="font-title" style="padding-top: 15px">Informações do time</p>
+                        </div>
+                        <br />
+                        <div style="display: flex">
+                            <div style="width:300px">
+                                <p class="font-subtitle">Logo do Time:</p>
+                                <img draggable="false" src="data:image/jpeg;base64,@Model.LogoEmBase64" style="max-height: 200px; max-width: 200px; width: auto; height: auto; margin-left: 15px;" alt="" id="sobre-img">
+                                <p class="font-subtitle">Matricula do Time: @Model.Id</p>
+                                <p class="font-subtitle">Nome: @Model.Nome</p>
+                                <p class="font-subtitle">Sigla: @Model.Sigla</p>
+                                <p class="font-subtitle">Tecnico: @((ViewBag.tecnico as TecnicosViewModel).Nome)</p>
+                                @if (Model.Overall == 0)
+                                {
+                                    <p class="font-subtitle">Sem Overall</p>
+                                }
+                                else
+                                {
+                                    <p class="font-subtitle">Overall: @Model.Overall</p>
+                                }
+                                <p class="font-subtitle">Criado Por: @((ViewBag.usuario as UsuariosViewModel).Nome)</p>
+                            </div>
+                            <div style="flex: 1; max-height: 405px; overflow-y: auto;">
+                                @if (ViewBag.ListJogadores != null)
+                                {
+                                    <p class="font-subtitle" style="margin-left: 0">Jogadores:</p>
+                                    <br />
+                                    <table class="table table-responsive margintop10">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>Posição</th>
+                                            <th>N.º</th>
+                                            <th>Nacionalidade</th>
+                                        </tr>
+                                        @foreach (TimeJogadorCompletoViewModel jogador in ViewBag.ListJogadores)
+                                        {
+                                            <tr>
+                                                <td>@jogador.JogadorId</td>
+                                                <td>@jogador.Nome</td>
+                                                <td>@jogador.posicao</td>
+                                                <td>@jogador.NmrCamiseta</td>
+                                                <td>@jogador.Nacionalidade</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>

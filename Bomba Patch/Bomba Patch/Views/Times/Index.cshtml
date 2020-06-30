@@ -19,38 +19,31 @@
                 </div>
             </div>
         </div>
-        <div class="cards-index">
-            <div class="card-index mg-right-10px">
-                <table class="table table-responsive margintop10">
-                    <tr>
-                        <th style="width: 150px">Ações</th>
-                        <th>ID</th>
-                        <th>Logo</th>
-                        <th>Nome</th>
-                        <th>Overall</th>
-                    </tr>
-                    @foreach (TimeViewModel time in Model)
-                    {
-                        <tr>
-                            <td>
-                                @if (time.UsuarioId == Convert.ToInt32(ViewBag.id_usuario))
-                                {
-                                    <a title="Editar Jogadores" style="color: greenyellow; font-size: 15px" href="javascript:jogadores(@time.Id)"><i class="fas fa fa-plus-circle"></i></a>
-                                    <a title="Editar Time" style="color: dodgerblue; font-size: 15px" href="/times/Edit?id=@time.Id"><i class="fas fa-edit"></i></a>
-                                    <a title="Excluir Time" style="color: red; font-size: 15px" href="javascript:apagar(@time.Id)"><i class="fas fa-trash"></i></a>
-                                }
-                                <a title="Visualizar Time" style="color: red; font-size: 15px" href="javascript:apagar(@time.Id)"><i class="fa fa-address-card"></i></a>
-                            </td>
-                            <td>@time.Id</td>
-                            <td><img src="data:image/jpeg;base64,@time.LogoEmBase64" alt="Alternate Text" class="img-logo" /></td>
-                            <td>@time.Nome</td>
-                            <td>@time.Overall</td>
-                        </tr>
-                    }
-                </table>
+        <div style="display: flex">
+            <div class="cards-index">
+                <div class="card-index mg-right-10px" style="width: 270px;">
+                    <h3>Filtros</h3>
+                    <br />
+                    <label for="NomeTime" class="control-label">Nome</label>
+                    <input type="text" name="NomeTime" id="NomeTime" value="" class="form-control" />
+                    <br />
+                    <label for="SiglaTime" class="control-label">Sigla</label>
+                    <input type="text" name="SiglaTime" id="SiglaTime" value="" class="form-control" />
+                    <br />
+                    <label for="UsuarioId" class="control-label">Criador Por</label>
+                    <select name="UsuarioId" id="UsuarioId" asp-items="ViewBag.Usuarios" class="form-control"> </select>
+                    <br />
+                    <label for="OrderBy" class="control-label">Ordenado Por</label>
+                    <select name="OrderBy" id="OrderBy" asp-items="ViewBag.OrderBy" class="form-control"> </select>
+                    <br />
+                    <div class="btn btn-primary" onclick="filtraTime()">Salvar</div>
+                </div>
+            </div>
+            <div id="conteudoGrid">
+                @Html.Partial("pvGrid", Model)
+             </div>
             </div>
         </div>
-    </div>
 </main>
 
 <script>
@@ -60,6 +53,9 @@
 
     function jogadores(id) {
         location.href = '/TimeJogador/Create?TimeId=' + id
+    }
+    function visualizar (id) {
+        location.href = '/times/VisualizarTime?id=' + id
     }
 
     function apagar(id) {

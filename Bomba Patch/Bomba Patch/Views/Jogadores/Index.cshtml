@@ -19,26 +19,31 @@
                 </div>
             </div>
         </div>
-        <div class="cards-form">
-            <div class="card-form mg-right-10px" style="overflow-y:auto;">
-                <table class="table table-responsive margintop10">
-                    <tr>
-                        <th style="width: 40px">Ações</th>
-                        <th>ID</th>
-                        <th>Nome</th>
-                    </tr>
-                    @foreach (JogadoresViewModel jogador in Model)
-                    {
-                        <tr>
-                            <td>
-                                <a style="color: dodgerblue; font-size: 15px" href="/jogadores/Edit?id=@jogador.Id"><i class="fas fa-edit"></i></a>
-                                <a style="color: red; font-size: 15px" href="javascript:apagar(@jogador.Id)"><i class="fas fa-trash"></i></a>
-                            </td>
-                            <td>@jogador.Id</td>
-                            <td>@jogador.Nome</td>
-                        </tr>
-                    }
-                </table>
+        <div style="display: flex">
+            <div class="cards-index">
+                <div class="card-index mg-right-10px" style="width: 270px;">
+                    <h3>Filtros</h3>
+                    <br />
+                    <label for="NomeJogador" class="control-label">Nome</label>
+                    <input type="text" name="NomeJogador" id="NomeJogador" value="" class="form-control" />
+                    <br />
+                    <label for="PePref" class="control-label">Pé Preferido</label>
+                    <select name="PePref" id="PePref" asp-items="ViewBag.PePreferido" class="form-control"> </select>
+                    <br />
+                    <label for="Nacionalidade" class="control-label">Nacionalidade</label>
+                    <select name="Nacionalidade" id="Nacionalidade" asp-items="ViewBag.Nacionalidades" class="form-control"> </select>
+                    <br />
+                    <label for="Posicao" class="control-label">Posição Preferido</label>
+                    <select name="Posicao" id="Posicao" asp-items="ViewBag.PosicoesPreferidas" class="form-control"> </select>
+                    <br />
+                    <label for="OrderBy" class="control-label">Ordenado Por</label>
+                    <select name="OrderBy" id="OrderBy" asp-items="ViewBag.OrderBy" class="form-control"> </select>
+                    <br />
+                    <div class="btn btn-primary" onclick="filtraPosicao()">Salvar</div>
+                </div>
+            </div>
+            <div id="conteudoGrid">
+                @Html.Partial("pvGrid", Model)
             </div>
         </div>
     </div>

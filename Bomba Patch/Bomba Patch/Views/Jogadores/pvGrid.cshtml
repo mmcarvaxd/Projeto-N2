@@ -1,0 +1,24 @@
+﻿@model List<JogadoresViewModel>
+
+<div class="cards-form">
+    <div class="card-form mg-right-10px" style="overflow-y:auto;">
+        <table class="table table-responsive margintop10">
+            <tr>
+                <th style="width: 40px">Ações</th>
+                <th>ID</th>
+                <th>Nome</th>
+            </tr>
+            @foreach (JogadoresViewModel jogador in Model)
+            {
+                <tr>
+                    <td>
+                        <a style="color: dodgerblue; font-size: 15px" href="/jogadores/Edit?id=@jogador.Id"><i class="fas fa-edit"></i></a>
+                        <a style="color: red; font-size: 15px" href="javascript:apagar(@jogador.Id)"><i class="fas fa-trash"></i></a>
+                    </td>
+                    <td>@jogador.Id</td>
+                    <td>@jogador.Nome</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

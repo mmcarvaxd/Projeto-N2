@@ -41,9 +41,9 @@
             </div>
             <div id="conteudoGrid">
                 @Html.Partial("pvGrid", Model)
-             </div>
             </div>
         </div>
+    </div>
 </main>
 
 <script>
@@ -54,7 +54,7 @@
     function jogadores(id) {
         location.href = '/TimeJogador/Create?TimeId=' + id
     }
-    function visualizar (id) {
+    function visualizar(id) {
         location.href = '/times/VisualizarTime?id=' + id
     }
 

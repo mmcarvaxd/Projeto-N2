@@ -37,6 +37,26 @@ namespace BombaPatch.DAO
                                             Convert.ToInt32(registro["posicao_preferida"]));
         }
 
+        public List<JogadoresViewModel> ListagemComFiltro(string NomeJogador, int PePref, int Nacionalidade, int Posicao, int OrderBy)
+        {
+
+            var tabela = HelperDAO.ExecutaProcSelect("spListagemFiltroJogador", new SqlParameter[]
+            {
+                new SqlParameter("nome", NomeJogador),
+                new SqlParameter("IdPe", PePref),
+                new SqlParameter("IdNacionalidade", Nacionalidade),
+                new SqlParameter("IdPos", Posicao),
+                new SqlParameter("ordem", OrderBy),
+            });
+
+            List<JogadoresViewModel> lista = new List<JogadoresViewModel>();
+            foreach (DataRow registro in tabela.Rows)
+            {
+                lista.Add(MontaModel(registro));
+            }
+            return lista;
+        }
+
         protected override void SetTabela()
         {
             Tabela = "tb_jogadores";

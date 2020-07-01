@@ -16,5 +16,26 @@ function filtraTime() {
     });
 }
 
+function filtraPosicao() {
+    var PePref = $("#PePref").val();
+    var Nacionalidade = $("#Nacionalidade").val();
+    var NomeJogador = $("#NomeJogador").val();
+    var Posicao = $("#Posicao").val();
+    var OrderBy = $("#OrderBy").val();
+
+    $.ajax({
+        type: 'POST',
+        url: "/jogadores/Filtra",
+        cache: false,
+        data: {
+            "PePref": PePref, "Nacionalidade": Nacionalidade,
+            "NomeJogador": NomeJogador, "Posicao": Posicao, "OrderBy": OrderBy
+        },
+        success: function (dados) {
+            $("#conteudoGrid").html(dados);
+        }
+    });
+}
+
 
 
